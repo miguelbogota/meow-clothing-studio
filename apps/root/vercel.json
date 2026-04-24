@@ -1,4 +1,0 @@
-{
-  "buildCommand": "pnpm --workspace-root exec turbo --no-daemon --filter @meow-clothing-studio/root build --env-mode loose",
-  "installCommand": "node -v && pnpm --workspace-root --filter @meow-clothing-studio/root... install --config.dedupe-peer-dependents=false"
-}
