@@ -1,0 +1,14 @@
+{
+  "name": "@meow-clothing-studio/ts-config",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "@vercel/style-guide": "^6.0.0"
+  },
+  "devDependencies": {
+    "typescript": "6.0.3"
+  },
+  "publishConfig": {
+    "access": "restricted"
+  }
+}

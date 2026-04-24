@@ -1,0 +1,33 @@
+{
+  "$schema": "https://openapi.vercel.sh/microfrontends.json",
+  "applications": {
+    "@meow-clothing-studio/root": {
+      "development": {
+        "local": 3000,
+        "fallback": "microfrontends-marketing.labs.vercel.dev"
+      }
+    },
+    "@meow-clothing-studio/marketplace": {
+      "development": {
+        "local": 3002
+      },
+      "routing": [
+        {
+          "group": "marketplace",
+          "paths": ["/", "/product/:id"]
+        }
+      ]
+    },
+    "@meow-clothing-studio/checkout": {
+      "development": {
+        "local": 3003
+      },
+      "routing": [
+        {
+          "group": "checkout",
+          "paths": ["/checkout"]
+        }
+      ]
+    }
+  }
+}
