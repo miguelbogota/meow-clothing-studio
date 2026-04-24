@@ -31,11 +31,14 @@ export function CartLink() {
   return (
     <Link
       href="/checkout"
-      className="relative box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm p-3 focus:outline-none"
+      className="relative p-3 rounded-full border border-gray-200 hover:bg-gray-50 hover:border-gray-300 transition-all duration-300 hover:shadow-sm group"
     >
-      <ShoppingCart size={24} />
+      <ShoppingCart
+        size={20}
+        className="text-gray-700 group-hover:text-gray-900 transition-colors duration-300"
+      />
       {itemCount > 0 && (
-        <span className="absolute flex items-center justify-center size-5 text-xs font-bold text-white bg-red-500 rounded-full top-1 -right-2">
+        <span className="absolute flex items-center justify-center size-5 text-xs font-light text-white bg-gray-900 rounded-full top-1 -right-1 shadow-sm">
           {itemCount > 99 ? '99+' : itemCount}
         </span>
       )}

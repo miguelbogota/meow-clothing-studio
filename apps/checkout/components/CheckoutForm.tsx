@@ -53,16 +53,16 @@ export default function CheckoutForm({
 
   if (cart.items.length === 0) {
     return (
-      <div className="bg-white rounded-lg shadow-sm p-8 text-center">
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">
+      <div className="bg-white rounded-2xl shadow-sm p-8 text-center border border-gray-100">
+        <h2 className="text-2xl font-light text-gray-900 mb-4">
           Your cart is empty
         </h2>
-        <p className="text-gray-600 mb-6">
+        <p className="text-gray-600 font-light mb-6">
           Add some items to your cart to checkout
         </p>
         <a
           href="/"
-          className="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors"
+          className="inline-block bg-gray-900 hover:bg-gray-800 text-white px-6 py-3 rounded-full transition-all duration-300 font-light hover:shadow-md"
         >
           Continue Shopping
         </a>
@@ -71,15 +71,15 @@ export default function CheckoutForm({
   }
 
   return (
-    <div className="bg-white rounded-lg shadow-sm p-6">
-      <h2 className="text-2xl font-bold text-gray-900 mb-6">Checkout</h2>
+    <div className="bg-white rounded-2xl shadow-sm p-8 border border-gray-100">
+      <h2 className="text-2xl font-light text-gray-900 mb-8">Checkout</h2>
 
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <form onSubmit={handleSubmit} className="space-y-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
             <label
               htmlFor="firstName"
-              className="block text-sm font-medium text-gray-700 mb-1"
+              className="block text-sm font-light text-gray-700 mb-2"
             >
               First Name
             </label>
@@ -90,14 +90,14 @@ export default function CheckoutForm({
               required
               value={formData.firstName}
               onChange={handleInputChange}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent transition-all duration-300"
             />
           </div>
 
           <div>
             <label
               htmlFor="lastName"
-              className="block text-sm font-medium text-gray-700 mb-1"
+              className="block text-sm font-light text-gray-700 mb-2"
             >
               Last Name
             </label>
@@ -108,7 +108,7 @@ export default function CheckoutForm({
               required
               value={formData.lastName}
               onChange={handleInputChange}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent transition-all duration-300"
             />
           </div>
         </div>
@@ -116,7 +116,7 @@ export default function CheckoutForm({
         <div>
           <label
             htmlFor="email"
-            className="block text-sm font-medium text-gray-700 mb-1"
+            className="block text-sm font-light text-gray-700 mb-2"
           >
             Email
           </label>
@@ -127,14 +127,14 @@ export default function CheckoutForm({
             required
             value={formData.email}
             onChange={handleInputChange}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent transition-all duration-300"
           />
         </div>
 
         <div>
           <label
             htmlFor="address"
-            className="block text-sm font-medium text-gray-700 mb-1"
+            className="block text-sm font-light text-gray-700 mb-2"
           >
             Address
           </label>
@@ -145,15 +145,15 @@ export default function CheckoutForm({
             required
             value={formData.address}
             onChange={handleInputChange}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent transition-all duration-300"
           />
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div>
             <label
               htmlFor="city"
-              className="block text-sm font-medium text-gray-700 mb-1"
+              className="block text-sm font-light text-gray-700 mb-2"
             >
               City
             </label>
@@ -164,14 +164,14 @@ export default function CheckoutForm({
               required
               value={formData.city}
               onChange={handleInputChange}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent transition-all duration-300"
             />
           </div>
 
           <div>
             <label
               htmlFor="zipCode"
-              className="block text-sm font-medium text-gray-700 mb-1"
+              className="block text-sm font-light text-gray-700 mb-2"
             >
               ZIP Code
             </label>
@@ -182,14 +182,14 @@ export default function CheckoutForm({
               required
               value={formData.zipCode}
               onChange={handleInputChange}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent transition-all duration-300"
             />
           </div>
 
           <div>
             <label
               htmlFor="country"
-              className="block text-sm font-medium text-gray-700 mb-1"
+              className="block text-sm font-light text-gray-700 mb-2"
             >
               Country
             </label>
@@ -200,15 +200,15 @@ export default function CheckoutForm({
               required
               value={formData.country}
               onChange={handleInputChange}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent transition-all duration-300"
             />
           </div>
         </div>
 
-        <div className="border-t pt-4">
-          <div className="flex justify-between items-center mb-4">
-            <span className="text-lg font-semibold">Total:</span>
-            <span className="text-2xl font-bold text-gray-900">
+        <div className="border-t border-gray-100 pt-8">
+          <div className="flex justify-between items-center mb-6">
+            <span className="text-xl font-light text-gray-900">Total:</span>
+            <span className="text-3xl font-light text-gray-900">
               ${cart.total.toFixed(2)}
             </span>
           </div>
@@ -216,7 +216,7 @@ export default function CheckoutForm({
           <button
             type="submit"
             disabled={isSubmitting}
-            className="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed"
+            className="w-full bg-gray-900 hover:bg-gray-800 text-white py-4 rounded-xl transition-all duration-300 disabled:bg-gray-400 disabled:cursor-not-allowed font-light hover:shadow-md"
           >
             {isSubmitting ? 'Processing Order...' : 'Complete Order'}
           </button>

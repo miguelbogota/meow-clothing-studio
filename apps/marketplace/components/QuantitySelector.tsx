@@ -47,15 +47,15 @@ export default function QuantitySelector({
 
   return (
     <div
-      className={`flex items-center ${showQuantity ? 'space-x-2' : 'space-x-1'}`}
+      className={`flex items-center ${showQuantity ? 'space-x-3' : 'space-x-2'}`}
     >
       <button
         onClick={onDecrease}
         disabled={isDisabledDecrease}
-        className={`rounded-full border border-gray-300 flex items-center justify-center transition-all duration-200 ${
+        className={`rounded-full border-0 flex items-center justify-center transition-all duration-300 ${
           isDisabledDecrease
-            ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
-            : 'bg-white hover:bg-gray-50 text-gray-700 hover:border-gray-400'
+            ? 'bg-gray-50 text-gray-300 cursor-not-allowed'
+            : 'bg-white hover:bg-gray-50 text-gray-700 hover:shadow-sm'
         } ${sizeClasses[size]} ${buttonSizeClasses[size]}`}
         aria-label="Decrease quantity"
       >
@@ -64,7 +64,7 @@ export default function QuantitySelector({
 
       {showQuantity && (
         <span
-          className={`font-medium text-gray-900 min-w-[2rem] text-center ${
+          className={`font-light text-gray-900 min-w-[2rem] text-center ${
             size === 'sm' ? 'text-sm' : size === 'md' ? 'text-base' : 'text-lg'
           }`}
         >
@@ -75,10 +75,10 @@ export default function QuantitySelector({
       <button
         onClick={onIncrease}
         disabled={isDisabledIncrease}
-        className={`rounded-full border border-gray-300 flex items-center justify-center transition-all duration-200 ${
+        className={`rounded-full border-0 flex items-center justify-center transition-all duration-300 ${
           isDisabledIncrease
-            ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
-            : 'bg-white hover:bg-gray-50 text-gray-700 hover:border-gray-400'
+            ? 'bg-gray-50 text-gray-300 cursor-not-allowed'
+            : 'bg-white hover:bg-gray-50 text-gray-700 hover:shadow-sm'
         } ${sizeClasses[size]} ${buttonSizeClasses[size]}`}
         aria-label="Increase quantity"
       >

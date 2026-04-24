@@ -15,15 +15,15 @@ export default function MarketplacePage() {
   }, [selectedCategory]);
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
       <Header />
 
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">
-            Welcome to Meow Clothing Studio
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-12">
+        <div className="text-center mb-12">
+          <h1 className="text-5xl font-light text-gray-900 mb-4 tracking-tight">
+            Meow Clothing Studio
           </h1>
-          <p className="text-lg text-gray-600">
+          <p className="text-xl text-gray-600 font-light max-w-2xl mx-auto leading-relaxed">
             Discover our purr-fect collection of cat-themed clothing and
             accessories
           </p>
@@ -34,15 +34,15 @@ export default function MarketplacePage() {
           onCategoryChange={setSelectedCategory}
         />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
           {filteredProducts.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
         </div>
 
         {filteredProducts.length === 0 && (
-          <div className="text-center py-12">
-            <p className="text-gray-500 text-lg">
+          <div className="text-center py-16">
+            <p className="text-gray-500 text-lg font-light">
               No products found in this category.
             </p>
           </div>

@@ -19,13 +19,13 @@ export default function CategoryFilter({
   onCategoryChange,
 }: CategoryFilterProps) {
   return (
-    <div className="flex flex-wrap gap-2 mb-6">
+    <div className="flex flex-wrap gap-3 mb-8 justify-center">
       <button
         onClick={() => onCategoryChange('all')}
-        className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+        className={`px-6 py-2.5 rounded-full text-sm font-light transition-all duration-300 border ${
           selectedCategory === 'all'
-            ? 'bg-blue-600 text-white'
-            : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+            ? 'bg-gray-900 text-white border-gray-900 shadow-md'
+            : 'bg-white text-gray-700 border-gray-300 hover:border-gray-400 hover:shadow-sm'
         }`}
       >
         All Products
@@ -34,10 +34,10 @@ export default function CategoryFilter({
         <button
           key={category.id}
           onClick={() => onCategoryChange(category.name)}
-          className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+          className={`px-6 py-2.5 rounded-full text-sm font-light transition-all duration-300 border ${
             selectedCategory === category.name
-              ? 'bg-blue-600 text-white'
-              : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+              ? 'bg-gray-900 text-white border-gray-900 shadow-md'
+              : 'bg-white text-gray-700 border-gray-300 hover:border-gray-400 hover:shadow-sm'
           }`}
         >
           {category.name}

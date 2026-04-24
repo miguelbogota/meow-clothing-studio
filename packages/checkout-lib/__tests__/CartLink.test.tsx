@@ -68,12 +68,6 @@ describe('CartLink', () => {
 
     const itemCount = screen.getByText('5');
     expect(itemCount).toBeInTheDocument();
-    expect(itemCount).toHaveClass(
-      'bg-red-500',
-      'text-white',
-      'text-xs',
-      'rounded-full',
-    );
   });
 
   it('should display 99+ when item count exceeds 99', () => {

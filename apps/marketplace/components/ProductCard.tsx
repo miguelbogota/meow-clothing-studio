@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { Product } from '@/lib/data';
 import Link from 'next/link';
+import { Minus, Plus } from 'lucide-react';
 import {
   addToCart,
   removeFromCart,
@@ -79,67 +80,87 @@ export default function ProductCard({ product }: ProductCardProps) {
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
+    <div className="transition-all duration-300 overflow-hidden group">
       <Link href={`/product/${product.id}`} className="block">
-        <div className="aspect-square bg-gray-200 relative">
-          <img
-            src={product.image}
-            alt={product.name}
-            className="w-full h-full object-cover"
-            onError={(e) => {
-              const target = e.target as HTMLImageElement;
-              target.src = product.image;
-            }}
-          />
-          {product.stock < 10 && (
-            <div className="absolute top-2 right-2 bg-red-500 text-white px-2 py-1 rounded text-xs">
-              Only {product.stock} left
-            </div>
-          )}
-        </div>
+        <div className="aspect-square bg-gray-50 relative overflow-hidden rounded-2xl">
+          <div className="w-full h-full overflow-hidden rounded-2xl">
+            <img
+              src={product.image}
+              alt={product.name}
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              onError={(e) => {
+                const target = e.target as HTMLImageElement;
+                target.src = product.image;
+              }}
+            />
+          </div>
 
-        <div className="p-4">
-          <h3 className="font-semibold text-lg text-gray-800 mb-2 hover:text-blue-600 transition-colors">
-            {product.name}
-          </h3>
-          <p className="text-gray-600 text-sm mb-3 line-clamp-2">
-            {product.description}
-          </p>
-
-          <div className="flex items-center justify-between">
-            <span className="text-2xl font-bold text-gray-900">
-              ${product.price}
-            </span>
-            <div className="flex items-center space-x-2">
-              {quantity > 0 ? (
-                <QuantitySelector
-                  quantity={quantity}
-                  maxQuantity={product.stock}
-                  onIncrease={handleIncrease}
-                  onDecrease={handleDecrease}
-                  size="sm"
-                  showQuantity={quantity > 0}
-                />
-              ) : (
+          {/* Add to Cart Button / Quantity Selector - Positioned inside image */}
+          <div className="absolute bottom-3 right-3">
+            {quantity > 0 ? (
+              <div className="bg-white/95 backdrop-blur-sm rounded-full shadow-lg p-1 flex items-center space-x-1">
+                <button
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    handleDecrease(e);
+                  }}
+                  className="w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center transition-colors duration-200"
+                >
+                  <Minus size={14} />
+                </button>
+                <span className="w-6 text-center text-sm font-medium text-gray-900">
+                  {quantity}
+                </span>
                 <button
                   onClick={(e) => {
                     e.preventDefault();
                     e.stopPropagation();
                     handleIncrease(e);
                   }}
-                  className="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1.5 rounded-lg transition-colors duration-200 text-sm font-medium"
-                  disabled={product.stock === 0}
+                  className="w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center transition-colors duration-200"
+                  disabled={quantity >= product.stock}
                 >
-                  Add
+                  <Plus size={14} />
                 </button>
-              )}
-            </div>
+              </div>
+            ) : (
+              <button
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  handleIncrease(e);
+                }}
+                className="w-12 h-12 bg-white/95 backdrop-blur-sm rounded-full shadow-lg flex items-center justify-center hover:bg-white transition-all duration-200 group"
+                disabled={product.stock === 0}
+              >
+                <Plus
+                  size={20}
+                  className="text-gray-900 group-hover:scale-110 transition-transform duration-200"
+                />
+              </button>
+            )}
           </div>
 
-          <div className="mt-2">
-            <span className="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded">
-              {product.category}
+          {product.stock < 10 && (
+            <div className="absolute top-3 right-3 bg-red-500 text-white px-3 py-1.5 rounded-full text-xs font-medium shadow-lg">
+              Only {product.stock} left
+            </div>
+          )}
+        </div>
+
+        <div className="px-2 py-3">
+          <div className="flex justify-between items-start mb-1">
+            <h3 className="text-md font-medium text-gray-900 hover:text-gray-700 transition-colors duration-300 flex-1">
+              {product.name}
+            </h3>
+            <span className="text-md font-semibold text-orange-600 ml-3">
+              ${product.price}
             </span>
+          </div>
+
+          <div className="mb-2">
+            <span className="text-sm text-gray-500">{product.category}</span>
           </div>
         </div>
       </Link>

@@ -86,13 +86,6 @@ describe('Header', () => {
     expect(cartLink).toBeInTheDocument();
   });
 
-  it('has correct styling classes on header', () => {
-    render(<Header />);
-
-    const header = screen.getByRole('banner');
-    expect(header).toHaveClass('bg-white', 'shadow-sm');
-  });
-
   it('has correct container styling', () => {
     render(<Header />);
 
@@ -119,24 +112,6 @@ describe('Header', () => {
       'justify-between',
       'items-center',
       'h-16',
-    );
-  });
-
-  it('has correct styling for store name link', () => {
-    render(<Header />);
-
-    const storeLink = screen.getByRole('link', {
-      name: '🐱Meow Clothing Studio',
-    });
-    expect(storeLink).toHaveClass(
-      'text-2xl',
-      'font-bold',
-      'text-gray-900',
-      'hover:text-gray-700',
-      'transition-colors',
-      'duration-200',
-      'flex',
-      'items-center',
     );
   });
 

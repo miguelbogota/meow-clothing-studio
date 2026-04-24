@@ -32,8 +32,8 @@ export default function CartItemComponent({ item, onUpdate }: CartItemProps) {
   };
 
   return (
-    <div className="flex items-center gap-4 p-4 bg-white rounded-lg shadow-sm border">
-      <div className="w-20 h-20 bg-gray-200 rounded-lg overflow-hidden flex-shrink-0">
+    <div className="flex items-center gap-6 p-6 bg-white rounded-2xl shadow-sm border border-gray-100">
+      <div className="w-24 h-24 bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl overflow-hidden flex-shrink-0">
         <img
           src={item.image}
           alt={item.name}
@@ -46,38 +46,40 @@ export default function CartItemComponent({ item, onUpdate }: CartItemProps) {
       </div>
 
       <div className="flex-1">
-        <h3 className="font-semibold text-gray-900">{item.name}</h3>
-        <p className="text-gray-600">${item.price.toFixed(2)}</p>
+        <h3 className="font-light text-xl text-gray-900 mb-2">{item.name}</h3>
+        <p className="text-gray-600 font-light">${item.price.toFixed(2)}</p>
       </div>
 
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-3">
         <button
           onClick={() => handleQuantityChange(item.quantity - 1)}
-          className="p-1 rounded-md hover:bg-gray-100 transition-colors"
+          className="p-2 rounded-full border border-gray-200 hover:bg-gray-50 hover:border-gray-300 transition-all duration-300"
           disabled={item.quantity <= 1}
         >
           <Minus size={16} />
         </button>
 
-        <span className="w-8 text-center font-medium">{item.quantity}</span>
+        <span className="w-8 text-center font-light text-gray-900">
+          {item.quantity}
+        </span>
 
         <button
           onClick={() => handleQuantityChange(item.quantity + 1)}
-          className="p-1 rounded-md hover:bg-gray-100 transition-colors"
+          className="p-2 rounded-full border border-gray-200 hover:bg-gray-50 hover:border-gray-300 transition-all duration-300"
         >
           <Plus size={16} />
         </button>
       </div>
 
       <div className="text-right">
-        <p className="font-semibold text-gray-900">
+        <p className="font-light text-xl text-gray-900">
           ${(item.price * item.quantity).toFixed(2)}
         </p>
       </div>
 
       <button
         onClick={handleRemove}
-        className="p-2 text-red-600 hover:bg-red-50 rounded-md transition-colors"
+        className="p-3 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-full transition-all duration-300"
       >
         <Trash2 size={16} />
       </button>
