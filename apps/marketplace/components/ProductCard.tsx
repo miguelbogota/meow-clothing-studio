@@ -51,7 +51,11 @@ export default function ProductCard({ product }: ProductCardProps) {
       addToCart({
         id: product.id,
         name: product.name,
-        price: product.price,
+        price: product.discount
+          ? parseFloat(
+              (product.price * (1 - product.discount / 100)).toFixed(2),
+            )
+          : product.price,
         image: product.image,
       });
     } else {
@@ -94,6 +98,12 @@ export default function ProductCard({ product }: ProductCardProps) {
               }}
             />
           </div>
+
+          {product.discount && (
+            <div className="absolute top-3 right-3 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-light">
+              {product.discount}% OFF
+            </div>
+          )}
 
           {/* Add to Cart Button / Quantity Selector - Positioned inside image */}
           <div className="absolute bottom-3 right-3">
@@ -154,9 +164,20 @@ export default function ProductCard({ product }: ProductCardProps) {
             <h3 className="text-md font-medium text-gray-900 hover:text-gray-700 transition-colors duration-300 flex-1">
               {product.name}
             </h3>
-            <span className="text-md font-semibold text-orange-600 ml-3">
-              ${product.price}
-            </span>
+
+            <div className="flex items-baseline space-x-3">
+              {product.discount && (
+                <div className="text-md text-gray-400 line-through font-light">
+                  ${product.price}
+                </div>
+              )}
+              <div className="text-md font-semibold text-orange-600 ml-3">
+                $
+                {product.discount
+                  ? (product.price * (1 - product.discount / 100)).toFixed(2)
+                  : product.price}
+              </div>
+            </div>
           </div>
 
           <div className="mb-2">

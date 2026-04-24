@@ -49,7 +49,11 @@ export default function ProductDetailsPage() {
       addToCart({
         id: product!.id,
         name: product!.name,
-        price: product!.price,
+        price: product?.discount
+          ? parseFloat(
+              (product.price * (1 - product.discount / 100)).toFixed(2),
+            )
+          : product!.price,
         image: product!.image,
       });
     } else {
@@ -167,10 +171,10 @@ export default function ProductDetailsPage() {
           </div>
 
           {/* Product Details */}
-          <div className="space-y-8">
+          <div>
             {/* Category and Brand */}
             <div className="flex items-center justify-between">
-              <span className="text-sm text-gray-500 bg-gray-50 px-4 py-2 rounded-full font-light border border-gray-100">
+              <span className="text-sm text-gray-500 px-0 py-3 font-light">
                 {product.category}
               </span>
               <div className="flex items-center space-x-1">
@@ -190,29 +194,36 @@ export default function ProductDetailsPage() {
             </div>
 
             {/* Product Name */}
-            <h1 className="text-5xl font-light text-gray-900 leading-tight">
+            <h1 className="text-5xl font-bold text-gray-900 leading-tight mt-2">
               {product.name}
             </h1>
 
             {/* Price */}
-            <div className="flex items-baseline space-x-3">
-              <div className="text-5xl font-light text-gray-900">
-                ${product.price}
+            <div className="flex items-baseline mt-3">
+              <div className="text-5xl font-light text-gray-900 mr-2">
+                $
+                {product.discount
+                  ? (product.price * (1 - product.discount / 100)).toFixed(2)
+                  : product.price}
               </div>
-              <div className="text-xl text-gray-400 line-through font-light">
-                ${(product.price * 1.3).toFixed(2)}
-              </div>
-              <span className="bg-red-50 text-red-600 px-3 py-1 rounded-full text-sm font-light">
-                30% OFF
-              </span>
+              {product.discount && (
+                <>
+                  <div className="text-xl text-gray-400 line-through font-light  mr-2">
+                    ${product.price}
+                  </div>
+                  <span className="bg-red-50 text-red-600 px-3 py-1 rounded-full text-sm font-light">
+                    {product.discount}% OFF
+                  </span>
+                </>
+              )}
             </div>
 
             {/* Stock Status and Shipping */}
-            <div className="space-y-3">
-              <div className="flex items-center space-x-3">
+            <div className="mt-7">
+              <div className="flex items-center ">
                 {product.stock > 0 ? (
                   <>
-                    <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                    <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse mr-1"></div>
                     <span className="text-green-600 font-light">
                       In Stock ({product.stock} available)
                     </span>
@@ -226,9 +237,9 @@ export default function ProductDetailsPage() {
                   </>
                 )}
               </div>
-              <div className="flex items-center space-x-2 text-gray-600">
+              <div className="flex items-center text-gray-600">
                 <svg
-                  className="w-4 h-4"
+                  className="w-4 h-4 mr-1"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -247,18 +258,18 @@ export default function ProductDetailsPage() {
             </div>
 
             {/* Description */}
-            <div>
-              <h2 className="text-xl font-light text-gray-900 mb-4">
+            <div className="mt-7">
+              <h2 className="text-lg font-light text-gray-900 mb-1">
                 Description
               </h2>
-              <p className="text-gray-600 leading-relaxed font-light text-lg">
+              <p className="text-gray-600 leading-relaxed font-light text-md">
                 {product.description}
               </p>
             </div>
 
             {/* Size Selector */}
-            <div>
-              <h3 className="text-lg font-light text-gray-900 mb-4">
+            <div className="mt-9">
+              <h3 className="text-lg font-light text-gray-900 mb-2">
                 Select Size
               </h3>
               <div className="grid grid-cols-6 gap-2">
@@ -274,8 +285,8 @@ export default function ProductDetailsPage() {
             </div>
 
             {/* Color Options */}
-            <div>
-              <h3 className="text-lg font-light text-gray-900 mb-4">Color</h3>
+            <div className="mt-3">
+              <h3 className="text-lg font-light text-gray-900 mb-3">Color</h3>
               <div className="flex space-x-3">
                 {[
                   'bg-black',
@@ -293,12 +304,12 @@ export default function ProductDetailsPage() {
             </div>
 
             {/* Quantity and Add to Cart */}
-            <div className="space-y-4">
-              <div className="flex items-center space-x-4">
-                <span className="text-lg font-light text-gray-900">
-                  Quantity:
-                </span>
-                {cartQuantity > 0 ? (
+            <div className="mt-8">
+              {cartQuantity > 0 && (
+                <div className="flex items-center mb-4">
+                  <span className="text-lg font-light text-gray-900 mr-3">
+                    Quantity:
+                  </span>
                   <QuantitySelector
                     quantity={cartQuantity}
                     maxQuantity={product.stock}
@@ -306,41 +317,20 @@ export default function ProductDetailsPage() {
                     onDecrease={handleDecrease}
                     size="lg"
                   />
-                ) : (
-                  <div className="flex items-center space-x-3">
-                    <button
-                      className="p-3 rounded-full border border-gray-200 hover:bg-gray-50 transition-all duration-300"
-                      onClick={handleDecrease}
-                      disabled
-                    >
-                      <Minus size={20} />
-                    </button>
-                    <span className="w-12 text-center text-lg font-light text-gray-900">
-                      1
-                    </span>
-                    <button
-                      className="p-3 rounded-full border border-gray-200 hover:bg-gray-50 transition-all duration-300"
-                      onClick={handleIncrease}
-                    >
-                      <Plus size={20} />
-                    </button>
-                  </div>
-                )}
-              </div>
+                </div>
+              )}
 
-              <button
-                className="w-full bg-gray-900 hover:bg-gray-800 text-white px-8 py-4 rounded-2xl font-light hover:shadow-xl transition-all duration-300 text-lg disabled:bg-gray-400"
-                onClick={handleIncrease}
-                disabled={product.stock === 0}
-              >
-                {product.stock === 0
-                  ? 'Out of Stock'
-                  : cartQuantity > 0
-                    ? 'Update Cart'
-                    : 'Add to Cart'}
-              </button>
+              {cartQuantity === 0 && (
+                <button
+                  className="w-full bg-gray-900 hover:bg-gray-800 text-white px-8 py-4 rounded-2xl font-light hover:shadow-xl transition-all duration-300 text-lg disabled:bg-gray-400"
+                  onClick={handleIncrease}
+                  disabled={product.stock === 0}
+                >
+                  {product.stock === 0 ? 'Out of Stock' : 'Add to Cart'}
+                </button>
+              )}
 
-              <button className="w-full border border-gray-200 text-gray-700 px-8 py-4 rounded-2xl font-light hover:bg-gray-50 transition-all duration-300 text-lg">
+              <button className="w-full border border-gray-200 text-gray-700 px-8 py-4 rounded-2xl font-light hover:bg-gray-50 transition-all duration-300 text-lg mt-2">
                 ♡ Add to Wishlist
               </button>
             </div>
@@ -416,43 +406,6 @@ export default function ProductDetailsPage() {
                   </span>
                 </div>
               </div>
-            </div>
-
-            {/* Additional Info */}
-            <div className="border-t border-gray-100 pt-8">
-              <h3 className="text-xl font-light text-gray-900 mb-6">
-                Product Details
-              </h3>
-              <dl className="grid grid-cols-1 gap-4">
-                <div className="flex justify-between py-3 border-b border-gray-50">
-                  <dt className="text-gray-600 font-light">Product ID:</dt>
-                  <dd className="text-gray-900 font-light">{product.id}</dd>
-                </div>
-                <div className="flex justify-between py-3 border-b border-gray-50">
-                  <dt className="text-gray-600 font-light">Category:</dt>
-                  <dd className="text-gray-900 font-light">
-                    {product.category}
-                  </dd>
-                </div>
-                <div className="flex justify-between py-3 border-b border-gray-50">
-                  <dt className="text-gray-600 font-light">Material:</dt>
-                  <dd className="text-gray-900 font-light">
-                    100% Premium Cotton
-                  </dd>
-                </div>
-                <div className="flex justify-between py-3 border-b border-gray-50">
-                  <dt className="text-gray-600 font-light">Care:</dt>
-                  <dd className="text-gray-900 font-light">
-                    Machine wash cold
-                  </dd>
-                </div>
-                <div className="flex justify-between py-3">
-                  <dt className="text-gray-600 font-light">Stock:</dt>
-                  <dd className="text-gray-900 font-light">
-                    {product.stock} units
-                  </dd>
-                </div>
-              </dl>
             </div>
           </div>
         </div>

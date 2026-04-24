@@ -95,9 +95,9 @@ export default function CheckoutPage() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-          <div className="lg:col-span-2">
-            <div className="space-y-6">
+        <div className="grid grid-cols-1 lg:grid-cols-10 gap-5">
+          <div className="lg:col-span-6">
+            <div className="space-y-3">
               {cart.items.map((item) => (
                 <CartItem key={item.id} item={item} onUpdate={updateCart} />
               ))}
@@ -121,7 +121,7 @@ export default function CheckoutPage() {
             )}
           </div>
 
-          <div className="lg:col-span-1">
+          <div className="lg:col-span-4">
             <CheckoutForm
               cart={cart}
               onOrderComplete={() => setOrderComplete(true)}

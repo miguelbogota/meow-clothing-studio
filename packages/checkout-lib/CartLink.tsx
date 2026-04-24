@@ -38,7 +38,7 @@ export function CartLink() {
         className="text-gray-700 group-hover:text-gray-900 transition-colors duration-300"
       />
       {itemCount > 0 && (
-        <span className="absolute flex items-center justify-center size-5 text-xs font-light text-white bg-gray-900 rounded-full top-1 -right-1 shadow-sm">
+        <span className="absolute flex items-center justify-center size-5 text-xs font-light text-white bg-gray-900 rounded-full -top-1 -right-1 shadow-sm">
           {itemCount > 99 ? '99+' : itemCount}
         </span>
       )}

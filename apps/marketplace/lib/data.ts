@@ -14,6 +14,8 @@ export interface Product {
   image: string;
   /** Available stock quantity */
   stock: number;
+  /** Optional discount percentage (0-100) */
+  discount?: number;
 }
 
 /** Interface representing a product category */
@@ -79,6 +81,7 @@ export const products: Product[] = [
     category: 'Hoodies',
     image: 'https://picsum.photos/seed/hoodie-1/300/300.jpg',
     stock: 30,
+    discount: 15,
   },
   {
     id: '3',
@@ -106,6 +109,7 @@ export const products: Product[] = [
     category: 'T-Shirts',
     image: 'https://picsum.photos/seed/tshirt-1/300/300.jpg',
     stock: 40,
+    discount: 20,
   },
   {
     id: '6',
@@ -142,6 +146,7 @@ export const products: Product[] = [
     category: 'Dresses',
     image: 'https://picsum.photos/seed/dress-1/300/300.jpg',
     stock: 15,
+    discount: 25,
   },
   {
     id: '10',
@@ -214,6 +219,7 @@ export const products: Product[] = [
     category: 'Accessories',
     image: 'https://picsum.photos/seed/necklace-1/300/300.jpg',
     stock: 60,
+    discount: 10,
   },
   {
     id: '18',
@@ -295,6 +301,7 @@ export const products: Product[] = [
     category: 'Outerwear',
     image: 'https://picsum.photos/seed/jacket-2/300/300.jpg',
     stock: 12,
+    discount: 30,
   },
   {
     id: '27',
@@ -331,6 +338,7 @@ export const products: Product[] = [
     category: 'Accessories',
     image: 'https://picsum.photos/seed/sunglasses-1/300/300.jpg',
     stock: 50,
+    discount: 15,
   },
   {
     id: '31',
@@ -403,6 +411,7 @@ export const products: Product[] = [
     category: 'Accessories',
     image: 'https://picsum.photos/seed/socks-1/300/300.jpg',
     stock: 100,
+    discount: 5,
   },
 ];
 
