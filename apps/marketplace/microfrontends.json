@@ -1,13 +1,13 @@
 {
   "$schema": "https://openapi.vercel.sh/microfrontends.json",
   "applications": {
-    "@meow-clothing-studio/marketplace": {
+    "meow-clothing-studio-marketplace": {
       "development": {
         "local": 3000,
         "fallback": "meow-clothing-studio-marketplace.vercel.app"
       }
     },
-    "@meow-clothing-studio/checkout": {
+    "meow-clothing-studio-checkout": {
       "development": {
         "local": 3001,
         "fallback": "meow-clothing-studio-checkout.vercel.app"

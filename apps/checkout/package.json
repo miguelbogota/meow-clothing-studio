@@ -1,5 +1,5 @@
 {
-  "name": "@meow-clothing-studio/checkout",
+  "name": "meow-clothing-studio-checkout",
   "version": "0.1.0",
   "private": true,
   "scripts": {
